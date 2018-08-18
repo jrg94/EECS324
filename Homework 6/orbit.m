@@ -1,0 +1,12 @@
+function model=orbit(t,x) % Satellite's geosynchronous orbit
+% x(1) = x-position at time t
+% x(2) = x-velocity at time t
+% x(3) = y-position at time t
+% x(4) = y-velocity at time t
+G = 6.672e-11 ; 
+Me = 5.97e24; % mass of Earth in kg
+Mm = 7.629e22; % mass of Moon in kg
+R = 3.84e8; % distance between earth and moon
+ax = (-G*Me*x(1)/(x(1)^2 + x(3)^2)^(1.5)) - (G*Mm*(x(1) - R)/(x(1)^2 + x(3))^(1.5));
+ay = (-G*Me*x(3)/(x(1)^2+x(3)^2)^(1.5)) - (G*Mm*x(3)/(x(1)^2 + x(3))^(1.5));
+model=[x(2);ax;x(4);ay];
